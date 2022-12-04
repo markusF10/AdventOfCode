@@ -43,8 +43,9 @@ public class StringCompareEachThreeLines {
 	public static char getEqualChar(char[] c1, char[] c2, char[] c3) {
 		int counter = 0;
 		int i = 0;
+		int size = Math.max(c1.length, Math.max(c2.length, c3.length)) + 1;
 		boolean notFound = true;
-		char[] buffer = new char[1000];
+		char[] buffer = new char[size];
 		while (counter < c1.length) {
 			int j = 0;
 
