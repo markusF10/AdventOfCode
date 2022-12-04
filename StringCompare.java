@@ -14,7 +14,9 @@ public class StringCompare {
 			String line;
 			int sum = 0;
 			while ((line = br.readLine()) != null) {
-				sum = getEqual(line, sum);
+				char equal = getEqualChar(line);
+				int s = charToPuzzleNumber(equal);
+				sum += s;
 			}
 			System.out.println(sum);
 		} catch (IOException e) {
@@ -22,7 +24,17 @@ public class StringCompare {
 		}
 	}
 
-	public static int getEqual(String line, int sum) {
+	public static int charToPuzzleNumber(char equal) {
+		int s;
+		if (Character.isLowerCase(equal)) {
+			s = equal % 96;
+		} else {
+			s = equal % 64 + 26;
+		}
+		return s;
+	}
+
+	public static char getEqualChar(String line) {
 		boolean notFound = true;
 		int counter = 0;
 		char[] c1 = new char[line.length() / 2];
@@ -46,13 +58,7 @@ public class StringCompare {
 			}
 			counter++;
 		}
-		int s;
-		if (Character.isLowerCase(c1[counter - 1])) {
-			s = c1[counter - 1] % 96;
-		} else {
-			s = c1[counter - 1] % 64 + 26;
-		}
-		sum += s;
-		return sum;
+		char equal = c1[counter - 1];
+		return equal;
 	}
 }
